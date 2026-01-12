@@ -2673,7 +2673,7 @@ blockquote.kg-blockquote-alt {
 }
 
 /* Caption */
-.gh-content h1
+.gh-content h1 {
     margin-top: 48px;
 }
 
