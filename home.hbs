@@ -10,7 +10,7 @@
                 include="tags"
                 limit="3"
                 order="published_at asc"
-                filter="published_at:>=today"
+                filter="tag:'{{date format='YYYY-MM-DD'}}'+tag:[morning,study,prayer]"
                 as |today|
             }}
 
