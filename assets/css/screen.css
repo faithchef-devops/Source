@@ -624,7 +624,7 @@ body.home-template .gh-viewport { overflow-x: hidden; }
 }
 
 .kg-width-full {
-    grid-column: full;
+    grid-column: wide;
 }
 
 /* 6. Navigation
