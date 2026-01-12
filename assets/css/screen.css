@@ -3672,3 +3672,7 @@ body.home-template .gh-viewport { overflow-x: hidden; }
     font-size: 2.2rem;
     font-weight: 600;
 }
+
+h1 {
+    overflow-y: hidden;
+}
