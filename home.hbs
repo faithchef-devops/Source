@@ -10,7 +10,7 @@
                 include="tags"
                 limit="3"
                 order="published_at asc"
-                filter="published_at:>=now-24h"
+                filter="published_at:>=today"
                 as |today|
             }}
 
@@ -18,8 +18,8 @@
                 <div class="fc-row">
 
                     {{!-- SLOT 1: morning --}}
-                    {{#if today.[0]}}
-                        {{#with today.[0]}}
+                    {{#if (lookup today 0)}}
+                        {{#with (lookup today 0)}}
                             <article class="fc-card">
                                 <h3 class="slot-title">Morning Encouragement</h3>
                                 <a class="fc-link" href="{{url}}">
@@ -42,20 +42,19 @@
                         {{/with}}
                     {{else}}
                         <article class="fc-card">
-                                <h3 class="slot-title">Morning Encouragement</h3>
-                                <div class="fc-media">
-                                    {{> "components/fc-placeholder" slot="morning"}}
-                                </div>
-                                <div class="fc-body unpublished">
-                                   <h3 class="waiting">Your morning encouragement will be here when you wake up.</h3>
-                                </div>
-                  
+                            <h3 class="slot-title">Morning Encouragement</h3>
+                            <div class="fc-media">
+                                {{> "components/fc-placeholder" slot="morning"}}
+                            </div>
+                            <div class="fc-body unpublished">
+                                <h3 class="waiting">Your morning encouragement will be here when you wake up.</h3>
+                            </div>
                         </article>
                     {{/if}}
 
                     {{!-- SLOT 2: study --}}
-                    {{#if today.[1]}}
-                        {{#with today.[1]}}
+                    {{#if (lookup today 1)}}
+                        {{#with (lookup today 1)}}
                             <article class="fc-card">
                                 <h3 class="slot-title">Lunchtime Study</h3>
                                 <a class="fc-link" href="{{url}}">
@@ -78,20 +77,19 @@
                         {{/with}}
                     {{else}}
                         <article class="fc-card">
-                                <h3 class="slot-title">Lunchtime Study</h3>
-                                <div class="fc-media">
-                                    {{> "components/fc-placeholder" slot="study"}}
-                                </div>
-                                <div class="fc-body unpublished">
-                                    <h3 class="waiting">Your lunchtime bible study will be here after your difficult morning.</h3>
-                                </div>
-                          
+                            <h3 class="slot-title">Lunchtime Study</h3>
+                            <div class="fc-media">
+                                {{> "components/fc-placeholder" slot="study"}}
+                            </div>
+                            <div class="fc-body unpublished">
+                                <h3 class="waiting">Your lunchtime bible study will be here after your difficult morning.</h3>
+                            </div>
                         </article>
                     {{/if}}
 
                     {{!-- SLOT 3: prayer --}}
-                    {{#if today.[2]}}
-                        {{#with today.[2]}}
+                    {{#if (lookup today 2)}}
+                        {{#with (lookup today 2)}}
                             <article class="fc-card">
                                 <h3 class="slot-title">Evening Prayer</h3>
                                 <a class="fc-link" href="{{url}}">
@@ -115,13 +113,12 @@
                     {{else}}
                         <article class="fc-card unpublished">
                             <h3 class="slot-title">Evening Prayer</h3>
-                                <div class="fc-media">
-                                    {{> "components/fc-placeholder" slot="prayer"}}
-                                </div>
-                                <div class="fc-body">
-                                    <h3 class="waiting">Your evening prayer will be waiting for you right here when you check back in.</h3>
-                                </div>
-                        
+                            <div class="fc-media">
+                                {{> "components/fc-placeholder" slot="prayer"}}
+                            </div>
+                            <div class="fc-body">
+                                <h3 class="waiting">Your evening prayer will be waiting for you right here when you check back in.</h3>
+                            </div>
                         </article>
                     {{/if}}
 
