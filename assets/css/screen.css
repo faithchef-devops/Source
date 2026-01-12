@@ -2199,7 +2199,7 @@ Search                         LOGO                    Login Subscribe
     line-height: 1.1;
     letter-spacing: -0.022em;
     text-align: center;
-    color: var(--ghost-accent-color);
+    /* color: var(--ghost-accent-color); */
 }
 
 .gh-article-excerpt {
@@ -2673,26 +2673,7 @@ blockquote.kg-blockquote-alt {
 }
 
 /* Caption */
-
-figcaption {
-    margin-top: 12px;
-    font-size: 1.4rem;
-    text-align: center;
-}
-
-.kg-card.kg-width-full figcaption {
-    padding: 0 16px;
-}
-
-figcaption a {
-    color: var(--ghost-accent-color);
-    text-decoration: underline;
-}
-
-/* 17. Comments
-/* ---------------------------------------------------------- */
-
-.gh-comments {
+.gh-content h1
     margin-top: 48px;
 }
 
@@ -3665,7 +3646,7 @@ body.home-template .gh-viewport { overflow-x: hidden; }
 
 .slot-title 
 {
-    color: var(--ghost-accent-color);
+    /* color: var(--ghost-accent-color); */
     text-align: center;
     margin-top: 0rem;
     margin-bottom: 2rem;
