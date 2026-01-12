@@ -3,33 +3,31 @@
 
 {{#post}}
 
-<main class="gh-main">
+<main class="gh-main gh-outer">
 
-    <article class="gh-article {{post_class}}">
+    <article class="gh-article {{post_class}} gh-inner">
 
         <header class="gh-article-header gh-canvas">
-
             <h1 class="gh-article-title is-title">{{title}}</h1>
-
             {{> "feature-image"}}
-
         </header>
 
         <section class="gh-content gh-canvas is-body{{#if @custom.enable_drop_caps_on_posts}} drop-cap{{/if}}">
             {{content}}
         </section>
 
-    </article>
+        {{#if comments}}
+            <div class="gh-comments gh-canvas">
+                {{comments}}
+            </div>
+        {{/if}}
 
-    {{#if comments}}
-        <div class="gh-comments gh-canvas">
-            {{comments}}
-        </div>
-    {{/if}}
+    </article>
 
 </main>
 
 {{/post}}
+
 
 {{#if @custom.show_related_articles}}
     {{#get "posts" include="authors" filter="id:-{{post.id}}" limit="4" as |next|}}
