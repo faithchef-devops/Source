@@ -391,25 +391,233 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
     flex-grow: 1;
 }
 
-.gh-canvas,
-.kg-width-full.kg-content-wide {
-    --main: min(var(--content-width, 720px), 100% - var(--container-gap) * 2);
-    --wide: minmax(0, calc((var(--container-width, 1200px) - var(--content-width, 720px)) / 2));
-    --full: minmax(var(--container-gap), 1fr);
+.gh-canvas,/* Home-only: prevent the *page* from horizontal scrolling */
+body.home-template { overflow-x: hidden; }
+body.home-template .gh-viewport { overflow-x: hidden; }
 
-    display: grid;
-    grid-template-columns:
-        [full-start] var(--full)
-        [wide-start] var(--wide)
-        [main-start] var(--main) [main-end]
-        var(--wide) [wide-end]
-        var(--full) [full-end];
+/* Use theme container widths */
+.fc-home.gh-container.gh-outer { margin-top: 20px; }
+
+/* Scroll rail (this MUST be the element that scrolls) */
+.fc-rail {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
 }
 
-.gh-canvas > * {
-    grid-column: wide;
+/* Row: horizontal flow on mobile */
+.fc-row {
+    display: flex;
+    gap: var(--grid-gap);
+    align-items: stretch;
 }
 
+/* Each card should be allowed to shrink internally without blowing layout */
+.fc-card {
+    flex: 0 0 86vw;
+    max-width: 420px;
+    background: transparent;
+}
+
+@media (min-width: 768px) {
+    .fc-rail { overflow: visible; padding-bottom: 0; }
+    .fc-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .fc-card { flex: none; max-width: none; }
+}
+
+.fc-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.fc-media {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+/* Placeholder: centered image, transparent background, light 1px border */
+.fc-media-placeholder {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.has-light-text .fc-media-placeholder {
+    border-color: rgba(255,255,255,0.15);
+}
+
+.fc-media-placeholder > img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.fc-body { padding: 18px 18px 22px; }
+
+.fc-title {
+    font-size: clamp(22px, 2vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.fc-date {
+    width: 100%;
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: clamp(28px, 3vw, 68px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.fc-excerpt { margin-top: 12px; font-size: 20px; opacity: .9; }
+
+.unpublished {
+    background-color: rgba(250, 250, 250, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.waiting {
+    text-align: center;
+    margin: 4rem;
+    margin-top: 60%;
+    font-size: 2rem;
+}
+
+.slot-title 
+{
+    color: var(--ghost-accent-color);
+    text-align: center;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+}/* Home-only: prevent the *page* from horizontal scrolling */
+body.home-template { overflow-x: hidden; }
+body.home-template .gh-viewport { overflow-x: hidden; }
+
+/* Use theme container widths */
+.fc-home.gh-container.gh-outer { margin-top: 20px; }
+
+/* Scroll rail (this MUST be the element that scrolls) */
+.fc-rail {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+}
+
+/* Row: horizontal flow on mobile */
+.fc-row {
+    display: flex;
+    gap: var(--grid-gap);
+    align-items: stretch;
+}
+
+/* Each card should be allowed to shrink internally without blowing layout */
+.fc-card {
+    flex: 0 0 86vw;
+    max-width: 420px;
+    background: transparent;
+}
+
+@media (min-width: 768px) {
+    .fc-rail { overflow: visible; padding-bottom: 0; }
+    .fc-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .fc-card { flex: none; max-width: none; }
+}
+
+.fc-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.fc-media {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+/* Placeholder: centered image, transparent background, light 1px border */
+.fc-media-placeholder {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.has-light-text .fc-media-placeholder {
+    border-color: rgba(255,255,255,0.15);
+}
+
+.fc-media-placeholder > img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.fc-body { padding: 18px 18px 22px; }
+
+.fc-title {
+    font-size: clamp(22px, 2vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.fc-date {
+    width: 100%;
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: clamp(28px, 3vw, 68px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.fc-excerpt { margin-top: 12px; font-size: 20px; opacity: .9; }
+
+.unpublished {
+    background-color: rgba(250, 250, 250, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.waiting {
+    text-align: center;
+    margin: 4rem;
+    margin-top: 60%;
+    font-size: 2rem;
+}
+
+.slot-title 
+{
+    color: var(--ghost-accent-color);
+    text-align: center;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
 .kg-width-wide,
 .kg-content-wide > div {
     grid-column: wide;
@@ -3348,4 +3556,119 @@ body[class*=" gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-hea
 
 .tag-template .gh-container:not(.has-sidebar) .gh-container-title {
     grid-column: 1 / -1;
+}
+
+/* Home-only: prevent the *page* from horizontal scrolling */
+body.home-template { overflow-x: hidden; }
+body.home-template .gh-viewport { overflow-x: hidden; }
+
+/* Use theme container widths */
+.fc-home.gh-container.gh-outer { margin-top: 20px; }
+
+/* Scroll rail (this MUST be the element that scrolls) */
+.fc-rail {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+}
+
+/* Row: horizontal flow on mobile */
+.fc-row {
+    display: flex;
+    gap: var(--grid-gap);
+    align-items: stretch;
+}
+
+/* Each card should be allowed to shrink internally without blowing layout */
+.fc-card {
+    flex: 0 0 86vw;
+    max-width: 420px;
+    background: transparent;
+}
+
+@media (min-width: 768px) {
+    .fc-rail { overflow: visible; padding-bottom: 0; }
+    .fc-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .fc-card { flex: none; max-width: none; }
+}
+
+.fc-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.fc-media {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+/* Placeholder: centered image, transparent background, light 1px border */
+.fc-media-placeholder {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.has-light-text .fc-media-placeholder {
+    border-color: rgba(255,255,255,0.15);
+}
+
+.fc-media-placeholder > img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.fc-body { padding: 18px 18px 22px; }
+
+.fc-title {
+    font-size: clamp(22px, 2vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.fc-date {
+    width: 100%;
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: clamp(28px, 3vw, 68px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.fc-excerpt { margin-top: 12px; font-size: 20px; opacity: .9; }
+
+.unpublished {
+    background-color: rgba(250, 250, 250, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.waiting {
+    text-align: center;
+    margin: 4rem;
+    margin-top: 60%;
+    font-size: 2rem;
+}
+
+.slot-title 
+{
+    color: var(--ghost-accent-color);
+    text-align: center;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    font-weight: 600;
 }

@@ -26,3 +26,14 @@ dist/
 config.json
 changelog.md
 changelog.md.bk
+
+.vscode/
+.idea/
+*.code-workspace
+
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
