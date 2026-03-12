@@ -6,130 +6,117 @@
 
             <h1 class="fc-date">{{date format="dddd MMM D"}}</h1>
 
-            {{#get "posts"
-                include="tags"
-                limit="3"
-                order="published_at asc"
-                filter="published_at:>=now-24h"
-                as |today|
-            }}
-
             <div class="fc-rail" aria-label="Today">
-                <div class="fc-row">
+                <div class="fc-row" id="fc-row">
 
                     {{!-- SLOT 1: morning --}}
-                    {{#if today.[0]}}
-                        {{#with today.[0]}}
-                            <article class="fc-card">
-                                <h3 class="slot-title">Morning Encouragement</h3>
-                                <a class="fc-link" href="{{url}}">
-                                    <div class="fc-media">
-                                        {{#if feature_image}}
-                                            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
-                                        {{else}}
-                                            {{> "components/fc-placeholder" slot="morning"}}
-                                        {{/if}}
-                                    </div>
-
-                                    <div class="fc-body">
-                                        <h2 class="fc-title">{{title}}</h2>
-                                        {{#if excerpt}}
-                                            <div class="fc-excerpt">{{excerpt}}</div>
-                                        {{/if}}
-                                    </div>
-                                </a>
-                            </article>
-                        {{/with}}
-                    {{else}}
-                        <article class="fc-card">
-                                <h3 class="slot-title">Morning Encouragement</h3>
-                                <div class="fc-media">
-                                    {{> "components/fc-placeholder" slot="morning"}}
-                                </div>
-                                <div class="fc-body unpublished">
-                                   <h3 class="waiting">Your morning encouragement will be here when you wake up.</h3>
-                                </div>
-                  
-                        </article>
-                    {{/if}}
+                    <article class="fc-card" id="fc-slot-0">
+                        <h3 class="slot-title">Morning Encouragement</h3>
+                        <div class="fc-media">
+                            {{> "components/fc-placeholder" slot="morning"}}
+                        </div>
+                        <div class="fc-body unpublished">
+                            <h3 class="waiting">Your morning encouragement will be here when you wake up.</h3>
+                        </div>
+                    </article>
 
                     {{!-- SLOT 2: study --}}
-                    {{#if today.[1]}}
-                        {{#with today.[1]}}
-                            <article class="fc-card">
-                                <h3 class="slot-title">Lunchtime Study</h3>
-                                <a class="fc-link" href="{{url}}">
-                                    <div class="fc-media">
-                                        {{#if feature_image}}
-                                            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
-                                        {{else}}
-                                            {{> "components/fc-placeholder" slot="study"}}
-                                        {{/if}}
-                                    </div>
-
-                                    <div class="fc-body">
-                                        <h2 class="fc-title">{{title}}</h2>
-                                        {{#if excerpt}}
-                                            <div class="fc-excerpt">{{excerpt}}</div>
-                                        {{/if}}
-                                    </div>
-                                </a>
-                            </article>
-                        {{/with}}
-                    {{else}}
-                        <article class="fc-card">
-                                <h3 class="slot-title">Lunchtime Study</h3>
-                                <div class="fc-media">
-                                    {{> "components/fc-placeholder" slot="study"}}
-                                </div>
-                                <div class="fc-body unpublished">
-                                    <h3 class="waiting">Your lunchtime bible study will be here after your difficult morning.</h3>
-                                </div>
-                          
-                        </article>
-                    {{/if}}
+                    <article class="fc-card" id="fc-slot-1">
+                        <h3 class="slot-title">Lunchtime Study</h3>
+                        <div class="fc-media">
+                            {{> "components/fc-placeholder" slot="study"}}
+                        </div>
+                        <div class="fc-body unpublished">
+                            <h3 class="waiting">Your lunchtime bible study will be here after your difficult morning.</h3>
+                        </div>
+                    </article>
 
                     {{!-- SLOT 3: prayer --}}
-                    {{#if today.[2]}}
-                        {{#with today.[2]}}
-                            <article class="fc-card">
-                                <h3 class="slot-title">Evening Prayer</h3>
-                                <a class="fc-link" href="{{url}}">
-                                    <div class="fc-media">
-                                        {{#if feature_image}}
-                                            <img src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
-                                        {{else}}
-                                            {{> "components/fc-placeholder" slot="prayer"}}
-                                        {{/if}}
-                                    </div>
-
-                                    <div class="fc-body">
-                                        <h2 class="fc-title">{{title}}</h2>
-                                        {{#if excerpt}}
-                                            <div class="fc-excerpt">{{excerpt}}</div>
-                                        {{/if}}
-                                    </div>
-                                </a>
-                            </article>
-                        {{/with}}
-                    {{else}}
-                        <article class="fc-card unpublished">
-                            <h3 class="slot-title">Evening Prayer</h3>
-                                <div class="fc-media">
-                                    {{> "components/fc-placeholder" slot="prayer"}}
-                                </div>
-                                <div class="fc-body">
-                                    <h3 class="waiting">Your evening prayer will be waiting for you right here when you check back in.</h3>
-                                </div>
-                        
-                        </article>
-                    {{/if}}
+                    <article class="fc-card" id="fc-slot-2">
+                        <h3 class="slot-title">Evening Prayer</h3>
+                        <div class="fc-media">
+                            {{> "components/fc-placeholder" slot="prayer"}}
+                        </div>
+                        <div class="fc-body unpublished">
+                            <h3 class="waiting">Your evening prayer will be waiting for you right here when you check back in.</h3>
+                        </div>
+                    </article>
 
                 </div>
             </div>
 
-            {{/get}}
-
         </div>
     </section>
 </main>
+
+{{#is "home"}}
+<script>
+(function () {
+    var SLOTS = [
+        { id: 'fc-slot-0', label: 'Morning Encouragement' },
+        { id: 'fc-slot-1', label: 'Lunchtime Study' },
+        { id: 'fc-slot-2', label: 'Evening Prayer' }
+    ];
+
+    var PLACEHOLDER_IMGS = [
+        '{{asset "images/morning_placeholder.png"}}',
+        '{{asset "images/study_placeholder.png"}}',
+        '{{asset "images/prayer_placeholder.png"}}'
+    ];
+
+    function buildCard(slot, post, index) {
+        var mediaHtml;
+        if (post.feature_image) {
+            mediaHtml =
+                '<img src="' + esc(post.feature_image) + '" alt="' + esc(post.title) + '" loading="lazy">';
+        } else {
+            mediaHtml =
+                '<div class="fc-media-placeholder">' +
+                    '<img src="' + PLACEHOLDER_IMGS[index] + '" alt="">' +
+                '</div>';
+        }
+
+        var excerptHtml = post.excerpt
+            ? '<div class="fc-excerpt">' + esc(post.excerpt) + '</div>'
+            : '';
+
+        slot.innerHTML =
+            '<h3 class="slot-title">' + SLOTS[index].label + '</h3>' +
+            '<a class="fc-link" href="/' + esc(post.slug) + '">' +
+                '<div class="fc-media">' + mediaHtml + '</div>' +
+                '<div class="fc-body">' +
+                    '<h2 class="fc-title">' + esc(post.title) + '</h2>' +
+                    excerptHtml +
+                '</div>' +
+            '</a>';
+    }
+
+    function esc(str) {
+        return (str || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function run(data) {
+        var now = new Date();
+        data.forEach(function (post, i) {
+            if (!post) return; // slot not yet published
+            var publishedAt = new Date(post.published_at);
+            if (now >= publishedAt) {
+                var el = document.getElementById(SLOTS[i].id);
+                if (el) buildCard(el, post, i);
+            }
+        });
+    }
+
+    fetch('/today.json?_=' + Date.now())
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+            if (Array.isArray(data)) run(data);
+        })
+        .catch(function () { /* fail silently — placeholders remain */ });
+}());
+</script>
+{{/is}}
