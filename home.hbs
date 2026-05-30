@@ -111,7 +111,7 @@
         });
     }
 
-    fetch('/today.json?_=' + Date.now())
+    fetch('https://cdn.faithchef.app/today.json?_=' + Date.now())
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (data) {
             if (Array.isArray(data)) run(data);
